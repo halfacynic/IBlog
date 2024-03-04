@@ -1,57 +1,93 @@
 <!-- 头部公用 -->
 <template>
-<div class="">
-	<div class="headBack">
-		<el-row class="container">
-			<el-col :span="24">
-				<!-- pc端导航 -->
-				<div class="headBox">
-					<el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal" @select="handleSelect" :router="true">
-						<el-menu-item index="/Home"><i class="fa fa-wa fa-home"></i> 首页</el-menu-item>
-						<el-submenu index="/Share">
-							<template slot="title"><i class="fa fa-wa fa-archive"></i> 分类</template>
-							<el-menu-item v-for="(item,index) in classListObj" :key="'class1'+index" :index="'/Share?classId='+item.id">{{item.name}}</el-menu-item>
-						</el-submenu>
-						<el-menu-item index="/Reward"><i class="fa fa-wa fa-cny"></i> 赞赏</el-menu-item>
-						<el-menu-item index="/Friendslink"><i class="fa fa-wa fa-users"></i>友链</el-menu-item>
+  <div class="">
+    <div class="headBack">
+      <el-row class="container">
+        <el-col :span="24">
+          <!-- pc端导航 -->
+          <div class="headBox">
+            <el-menu
+              :default-active="activeIndex"
+              class="el-menu-demo"
+              mode="horizontal"
+              @select="handleSelect"
+              :router="true"
+            >
+              <el-menu-item index="/Home"
+                ><i class="fa fa-wa fa-home"></i> 首页</el-menu-item
+              >
+              <el-submenu index="/Share">
+                <template slot="title"><i class="fa fa-wa fa-archive"></i> 分类</template>
+                <el-menu-item
+                  v-for="(item, index) in classListObj"
+                  :key="'class1' + index"
+                  :index="'/Share?classId=' + item.id"
+                  >{{ item.name }}</el-menu-item
+                >
+              </el-submenu>
+              <el-menu-item index="/Reward"
+                ><i class="fa fa-wa fa-cny"></i> 赞赏</el-menu-item
+              >
+              <el-menu-item index="/Friendslink"
+                ><i class="fa fa-wa fa-users"></i>友链</el-menu-item
+              >
 
-						<div class="userInfo">
-							<div v-show="!haslogin" class="nologin">
-								<a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a href="javascript:void(0);" @click="logoinFun(0)">&nbsp;注册</a>
-							</div>
-							<div v-show="haslogin" class="haslogin">
-								<i class="fa fa-fw fa-user-circle userImg"></i>
-								<ul class="haslogin-info">
-									<li>
-										<a href="#/UserInfo">个人中心</a>
-									</li>
-									<li>
-										<a href="javascript:void(0);" @click="userlogout">退出登录</a>
-									</li>
-								</ul>
-							</div>
-						</div>
-					</el-menu>
-				</div>
-			</el-col>
-		</el-row>
-	</div>
-	<div class="headImgBox" :style="{backgroundImage:this.$store.state.themeObj.top_image?'url('+this.$store.state.themeObj.top_image+')':'url(static/img/headbg05.jpg)'}">
-		<div class="scene">
-			<div><span id="luke"></span></div>
-		</div>
-		<div class="h-information">
+              <div class="userInfo">
+                <div v-show="!haslogin" class="nologin">
+                  <a href="javascript:void(0);" @click="logoinFun(1)">登录&nbsp;</a>|<a
+                    href="javascript:void(0);"
+                    @click="logoinFun(0)"
+                    >&nbsp;注册</a
+                  >
+                </div>
+                <div v-show="haslogin" class="haslogin">
+                  <i class="fa fa-fw fa-user-circle userImg"></i>
+                  <ul class="haslogin-info">
+                    <li>
+                      <a href="#/UserInfo">个人中心</a>
+                    </li>
+                    <li>
+                      <a href="javascript:void(0);" @click="userlogout">退出登录</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </el-menu>
+          </div>
+        </el-col>
+      </el-row>
+    </div>
+    <div
+      class="headImgBox"
+      :style="{
+        backgroundImage: this.$store.state.themeObj.top_image
+          ? 'url(' + this.$store.state.themeObj.top_image + ')'
+          : 'url(static/img/headbg05.jpg)',
+      }"
+    >
+      <div class="scene">
+        <div><span id="luke"></span></div>
+      </div>
+      <div class="h-information">
+        <img
+          :src="
+            this.$store.state.themeObj.head_portrait
+              ? this.$store.state.themeObj.head_portrait
+              : 'static/img/tou.png'
+          "
+          alt=""
+        />
 
-                    <img :src="this.$store.state.themeObj.head_portrait?this.$store.state.themeObj.head_portrait:'static/img/tou.png'" alt="">
-
-			<h2 class="h-description">
-
-                        {{this.$store.state.themeObj.autograph?this.$store.state.themeObj.autograph:"三更灯火五更鸡，正是男儿读书时"}}
-
-                </h2>
-		</div>
-	</div>
-</div>
+        <h2 class="h-description">
+          {{
+            this.$store.state.themeObj.autograph
+              ? this.$store.state.themeObj.autograph
+              : "三更灯火五更鸡，正是男儿读书时"
+          }}
+        </h2>
+      </div>
+    </div>
+  </div>
 </template>
 <script>
 import { logout } from "../api/user";
