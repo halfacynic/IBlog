@@ -417,7 +417,8 @@ const Typeit = (isAimee,emId) =>{
         theater
                 .write("Luke:Hello!",1000)
 //                .write("Vader:I am your father.", toggleClass)
-                .write("Luke:Hi,"+world, 500)
+                //.write("Luke:Hi,"+world, 500)//2024.3.4注释掉
+                .write("Luke:Welcome to ljl's Blog", 500)
                 .write({ name: "call", args: [kill, true] })
                 .write(function () { theater.play(true); });
         function kill () {
